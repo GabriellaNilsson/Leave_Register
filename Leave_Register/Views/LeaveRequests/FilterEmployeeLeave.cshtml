@@ -1,0 +1,22 @@
+﻿@model LeaveRequest
+
+<h1>Filter employee leaves</h1>
+<div>
+    <form asp-action="FilterEmployeeLeave" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <label asp-for="FkEmployeeId" class="control-label">Choose employee from list to filter</label>
+        <select name="selectedEmployeeId" class="form-control">
+            @foreach (var employee in ViewBag.EmployeesList as List<SelectListItem>)
+            {
+                <option value="@employee.Value">@employee.Text</option>
+            }
+        </select>
+        <button type="submit">Filter</button>
+    </form>
+
+    @if (ViewBag.Status != null)
+    {
+        <h3>@ViewBag.Status</h3>
+    }
+</div>
+
